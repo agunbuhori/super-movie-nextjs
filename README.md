@@ -10,10 +10,14 @@ git clone https://github.com/agunbuhori/super-movie-nextjs.git supermovie
 
 ## How to run this project?
 
-Point your path to project directory and run the command:
+Make sure you are in the project folder and follow these steps:
 
 ```bash
 cd supermovie
+```
+then run command:
+
+```bash
 npm run dev
 # or
 yarn dev
@@ -22,3 +26,4 @@ yarn dev
 ## By Agun Buhori
 [Linkedin](https://linkedin.com/in/agunbuhori)
 [Email](agun.buhori@gmail.com)
+[Codesandbox](jttps://codesanbox.io/u/agunbuhori)
