@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useDidMount } from "../../config/helper";
 import { useFetch } from "../../config/http";
@@ -77,9 +77,10 @@ const Movies: React.FC = () => {
         )
     }
 
-    function showImage(poster: string) {
-        setPoster(poster);
-    }
+    const showImage = useCallback((poster: string) => {
+        if (poster !== "N/A")
+          setPoster(poster);
+    }, [])
 
     return (
         <div className="relative">
@@ -92,7 +93,7 @@ const Movies: React.FC = () => {
                 </div>
             )}
             {(movie.isFetching || loadMore) && <Loading/>}
-            {poster !== "" && <ShowPoster src={poster}/>}
+            {poster !== "" && <ShowPoster close={() => setPoster("")} src={poster}/>}
         </div>
     )
 }
