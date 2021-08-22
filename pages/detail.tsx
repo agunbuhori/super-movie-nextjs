@@ -5,6 +5,7 @@ import { useDidMount } from "../config/helper";
 import { useFetch } from "../config/http";
 import { MovieDetail } from "../interfaces/Movie";
 import Link from 'next/link';
+import Footer from "../components/Footer";
 export default function Detail() {
   const [movie, setMovie] = useState<MovieDetail>({});
   const [isFetching, setIsFetching] = useState(true);
@@ -97,6 +98,7 @@ export default function Detail() {
                     <button className="px-3 py-2 bg-blue-600 text-white font-semibold rounded">Back To Search</button>
                 </Link>
       
+      <Footer/>
     </div>
   )
 }
