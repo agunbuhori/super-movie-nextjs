@@ -26,4 +26,4 @@ yarn dev
 ## By Agun Buhori
 [Linkedin](https://linkedin.com/in/agunbuhori)
 [Email](agun.buhori@gmail.com)
-[Codesandbox](https://codesanbox.io/u/agunbuhori)
+[Codesandbox](https://codesandbox.io/u/agunbuhori)
