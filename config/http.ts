@@ -7,7 +7,8 @@ export const http: AxiosInstance = axios.create({
     }
 });
 
-export const useFetch = (url: string, params: any, callback: Function, errCallback?: Function) => {
+export const doFetch = (url: string, params: any, callback: Function, errCallback?: Function) => {
+    
     return http.request({url, ...params})
     .then((response: AxiosResponse) => {
         if (response.status === 200) {

@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
+import Img from 'next/image';
 
 interface Props {
     src: string, 
     close: Function
 }
 
-const ShowPoster: React.FC<Props> = React.memo((props) => {
+export function ShowPoster(props: Props) {
 
     const handleScroll = (e: Event) => {
         e.preventDefault();
@@ -18,10 +19,10 @@ const ShowPoster: React.FC<Props> = React.memo((props) => {
 
     return (
         <div style={{background: 'rgba(0, 0, 0, 0.8)'}} className="fixed transition flex-col top-0 left-0 w-full h-full flex justify-center items-center">
-            <img src={props.src} alt="" className="h-3/4"/>
+            <Img src={props.src} alt="" className="h-3/4"/>
             <button className="p-2 text-white font-semibold" onClick={() => props.close()}>Close</button>
         </div>
     )
-})
+}
 
-export default ShowPoster;
+export default React.memo(ShowPoster);

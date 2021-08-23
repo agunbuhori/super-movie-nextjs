@@ -2,7 +2,7 @@ import { shallow, ShallowWrapper } from "enzyme";
 import MovieItem from "../components/Movies/MovieItem";
 import Movies from "../components/Movies/Movies";
 import SearchInput from "../components/SearchInput";
-import { useFetch } from "../config/http";
+import { doFetch } from "../config/http";
 import { MovieResponse } from "../interfaces/Movie";
 import Index from '../pages/index'
 
@@ -19,7 +19,7 @@ describe("Rendering testing", () => {
   });
 
   it("Fetching data", () => {
-    useFetch('/', {params: {s: "Batman", page: 1}}, (response: MovieResponse) => {
+    doFetch('/', {params: {s: "Batman", page: 1}}, (response: MovieResponse) => {
       if (response.Response === 'True') {
         expect(response.Search.map((movie, index) => (
           <MovieItem {...movie} key={index} showImage={() => {}}/>

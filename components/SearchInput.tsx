@@ -2,7 +2,7 @@ import { useRouter } from 'next/dist/client/router';
 import React, { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useDidMount } from '../config/helper';
-import { useFetch } from '../config/http';
+import { doFetch } from '../config/http';
 import { Movie, MovieResponse } from '../interfaces/Movie';
 import { RootState } from '../store';
 import { fetchMovie } from '../store/actions/movieActions';
@@ -13,10 +13,9 @@ interface AutocompleteProps {
     hide: Function
 }
 
-const Autocomplete: React.FC<AutocompleteProps> = React.memo((props) => {
+function Autocomplete(props: AutocompleteProps) {
     const [pointer, setPointer] = useState(-1);
     const router = useRouter();
-    const dispatch = useDispatch();
 
     const handleKeydown = (e: KeyboardEvent) => {
         let key;
@@ -58,7 +57,9 @@ const Autocomplete: React.FC<AutocompleteProps> = React.memo((props) => {
             ))}
         </div>
     )
-})
+}
+
+const LiveSearch = React.memo(Autocomplete);
 
 interface Props {
 }
@@ -94,7 +95,7 @@ const SearchInput: React.FC<Props> = (props): JSX.Element => {
 
         if (query.length >= 4) {
             delay(() => {
-                useFetch('/', {params: {page: 1, s: query}}, (response: MovieResponse) => {
+                doFetch('/', {params: {page: 1, s: query}}, (response: MovieResponse) => {
                     if (response.Response === 'True') {
                         setSearchResult(response.Search);
                     }
@@ -120,7 +121,7 @@ const SearchInput: React.FC<Props> = (props): JSX.Element => {
     return (
         <form className="w-full mt-20 relative" onSubmit={doSearch}>
             <input onChange={autocomplete} placeholder="Search your favorite movies e.g Spongebob" ref={searchInputRef} className="border-4 rounded-lg p-3 w-full text-red-400 focus:border-red-400 outline-none border-gray-500 block text-2xl bg-transparent"/>
-            {showAutocomplete && <Autocomplete hide={hideAutocomplete} movies={searchResult}/>}
+            {showAutocomplete && <LiveSearch hide={hideAutocomplete} movies={searchResult}/>}
         </form>
     )
 }

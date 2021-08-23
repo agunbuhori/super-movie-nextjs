@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useDidMount } from "../../config/helper";
-import { useFetch } from "../../config/http";
+import { doFetch } from "../../config/http";
 import { MovieResponse } from "../../interfaces/Movie";
 import { RootState } from "../../store";
 import { addMovie, fetchMovie } from "../../store/actions/movieActions";
@@ -37,7 +37,7 @@ const Movies: React.FC = () => {
     }
 
     async function fetchMovies(params: any, callback: (response: MovieResponse) => void, errorHandler = handleError) {
-        await useFetch('/', {params: {...params}}, callback, errorHandler);
+        await doFetch('/', {params: {...params}}, callback, errorHandler);
         dispatch(fetchMovie({isFetching: false}));
     }
 
@@ -70,7 +70,7 @@ const Movies: React.FC = () => {
         return (
             <div className="py-2">
                 {movie.data.length > 0 
-                    ? <div className="text-xl text-white text-center">Show {movie.data.length}/{movie.total} results for "{movie.s}"</div>
+                    ? <div className="text-xl text-white text-center">Show {movie.data.length}/{movie.total} results for <strong>{movie.s}</strong></div>
                     : <div className="text-xl text-white text-center">Movie not found</div>
                 }
             </div>

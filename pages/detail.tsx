@@ -2,10 +2,11 @@ import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import { Loading } from "../components/Loading";
 import { useDidMount } from "../config/helper";
-import { useFetch } from "../config/http";
+import { doFetch } from "../config/http";
 import { MovieDetail } from "../interfaces/Movie";
 import Link from 'next/link';
 import Footer from "../components/Footer";
+
 export default function Detail() {
   const [movie, setMovie] = useState<MovieDetail|any>({});
   const [isFetching, setIsFetching] = useState(true);
@@ -14,7 +15,7 @@ export default function Detail() {
 
   useEffect(() => {
     if (router.query['id'])
-      useFetch('/', {params: {i: router.query['id']}}, (response: MovieDetail) => {
+      doFetch('/', {params: {i: router.query['id']}}, (response: MovieDetail) => {
         if (response.Response === 'True')
           setMovie(response);
         setIsFetching(false);
