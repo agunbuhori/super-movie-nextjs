@@ -23,7 +23,7 @@ describe("Rendering testing", () => {
       if (response.Response === 'True') {
         expect(response.Search.map((movie, index) => (
           <MovieItem {...movie} key={index} showImage={() => {}}/>
-        ))).toContain(response.Search[0].Title);
+        ))).toMatchSnapshot();
       }
     });
   });

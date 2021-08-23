@@ -7,7 +7,7 @@ import { MovieDetail } from "../interfaces/Movie";
 import Link from 'next/link';
 import Footer from "../components/Footer";
 export default function Detail() {
-  const [movie, setMovie] = useState<MovieDetail>({});
+  const [movie, setMovie] = useState<MovieDetail|any>({});
   const [isFetching, setIsFetching] = useState(true);
   const router = useRouter();
   const didMount = useDidMount();
